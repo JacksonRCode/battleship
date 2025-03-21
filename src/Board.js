@@ -1,7 +1,7 @@
 // Board factory function
 export { Board };
 
-const Board = (dimensions, ships = [], playerName = "Joe") => {
+const Board = (dimensions, ships = []) => {
   /*
     Dimensions -- game board dimensions (dimensions x dimensions)
     Ships -- array of array of ship info [[ship1: shipObj, [shipCoords]], [ship2: shipObj, []], ...]
@@ -31,8 +31,6 @@ const Board = (dimensions, ships = [], playerName = "Joe") => {
         _board[position[0]][position[1]] = [ship[0], 0];
       });
     });
-
-    return _board;
   };
 
   const receiveAttack = (coord) => {
@@ -67,10 +65,12 @@ const Board = (dimensions, ships = [], playerName = "Joe") => {
     return win;
   };
 
+  initBoard();
+
   return {
     initBoard,
     receiveAttack,
-    getBoard: () => _board,
+    seeBoard: () => _board,
   };
 };
 
