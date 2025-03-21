@@ -1,6 +1,7 @@
 // Player factory function
+export { Player };
 
-export default Player = (username = "Player1", realPlayer = false) => {
+const Player = (username = "Player", realPlayer = false) => {
   const _realPlayer = realPlayer;
   const _username = username;
   let _board = [];

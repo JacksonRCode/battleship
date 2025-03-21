@@ -1,6 +1,7 @@
 // Ship factory function
+export { Ship };
 
-export default Ship = (length, type = "BATTLESHIP") => {
+const Ship = (length, type = "BATTLESHIP") => {
   let _health = length;
   const _shipType = type;
   let _sunk = false;

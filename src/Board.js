@@ -1,6 +1,7 @@
 // Board factory function
+export { Board };
 
-export default Board = (dimensions, ships = [], playerName = "Joe") => {
+const Board = (dimensions, ships = [], playerName = "Joe") => {
   /*
     Dimensions -- game board dimensions (dimensions x dimensions)
     Ships -- array of array of ship info [[ship1: shipObj, [shipCoords]], [ship2: shipObj, []], ...]

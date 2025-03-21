@@ -1,9 +1,7 @@
-// import "./styles/baseStyles.css";
-// import "./styles/styles.css";
-// import Player from "./Player";
-// import Ship from "./Ship";
-// import Board from "./Board.js";
+import "./styles/baseStyles.css";
+import "./styles/styles.css";
+import { Player } from "./Player.js";
+import { Ship } from "./Ship.js";
+import { Board } from "./Board.js";
 
-// (initGame = () => {
-//   console.log("yo");
-// })();
+console.log("Yo");

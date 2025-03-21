@@ -12,7 +12,6 @@
   },
   "license": "ISC",
   "author": "Jackson Reid",
-  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "test": "jest",
