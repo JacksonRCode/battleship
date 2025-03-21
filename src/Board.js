@@ -69,6 +69,7 @@ export default Board = (dimensions, ships = [], playerName = "Joe") => {
   return {
     initBoard,
     receiveAttack,
+    getBoard: () => _board,
   };
 };
 
