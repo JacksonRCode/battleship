@@ -16,10 +16,12 @@ export default Ship = (length, type = "BATTLESHIP") => {
   };
 
   const checkSunk = () => {
-    if (!_health) _sunk = true;
+    if (_health === 0) _sunk = true;
   };
 
   return {
     hit,
+    getSunk: () => _sunk,
+    getHealth: () => _health,
   };
 };
