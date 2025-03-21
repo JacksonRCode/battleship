@@ -1,7 +1,7 @@
 {
   "name": "battleship",
   "version": "1.0.0",
-  "description": "Battleship board game web app",
+  "description": "Web app implementation of the traditional over the board game battleship. Playable against the computer as well as against a friend locally.",
   "homepage": "https://github.com/JacksonRCode/battleship#readme",
   "bugs": {
     "url": "https://github.com/JacksonRCode/battleship/issues"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/JacksonRCode/battleship.git"
   },
   "license": "ISC",
-  "author": "Jackson Reid <jackdareid@gmail.com>",
+  "author": "Jackson Reid",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
