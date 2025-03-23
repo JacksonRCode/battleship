@@ -65,4 +65,4 @@ const fullBoardPlayer = player1.getBoard().seeBoard();
 const fullBoardBot = playerBot.getBoard().seeBoard();
 // console.log(fullBoardBot);
 
-fillBoard();
+fillBoard(player1.getBoard(), playerBot.getBoard());

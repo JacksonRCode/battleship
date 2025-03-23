@@ -40,17 +40,20 @@ const Board = (dimensions, ships = []) => {
     const y = coord[1];
     const target = _board[x][y];
 
+    let returnValue = "";
+
     // Case 1 --> water
     if (!Array.isArray(target)) {
       _board[x][y] = 1;
+      returnValue = "Miss";
     } else {
       // Case 2 --> ship
       _board[x][y][1] = 1;
-      target[0].hit();
-      if (target[0].getSunk()) return checkWin();
+      returnValue = target[0].hit();
+      if (target[0].getSunk()) returnValue = checkWin();
     }
 
-    return _board[x][y];
+    return returnValue;
   };
 
   const checkWin = () => {
@@ -62,7 +65,7 @@ const Board = (dimensions, ships = []) => {
       }
     });
 
-    return win;
+    return win ? "Game Over!" : "Sunk!";
   };
 
   initBoard();

@@ -47,12 +47,30 @@ body {
   background-color: darkgray;
   display: flex;
   flex-wrap: wrap;
+  outline: 2px solid black;
 }
 
 .tile {
   height: 50px;
   width: 50px;
   border: 1px solid black;
+  cursor: pointer;
+}
+
+.tile:hover {
+  background-color: gray;
+}
+
+.tile.hit {
+  background-color: white;
+}
+
+.ship {
+  background-color: blue;
+}
+
+.ship.hit {
+  background-color: red;
 }
 
 .game-control {
@@ -91,4 +109,8 @@ body {
 
 .footer-text {
   color: var(--background);
+}
+
+.gameover {
+  pointer-events: none;
 }

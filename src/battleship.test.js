@@ -126,3 +126,5 @@ test("Test that board can be filled and cleared", () => {
   // expect([...b1.children].length).toBe(10);
   console.log("hey");
 });
+
+test("Test that DOM clicks on ships and water register", () => {});

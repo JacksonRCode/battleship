@@ -24,5 +24,6 @@ const Ship = (length, type = "BATTLESHIP") => {
     hit,
     getSunk: () => _sunk,
     getHealth: () => _health,
+    getName: () => _shipType,
   };
 };
