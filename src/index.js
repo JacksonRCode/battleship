@@ -3,7 +3,7 @@ import "./styles/styles.css";
 import { Player } from "./Player.js";
 import { Ship } from "./Ship.js";
 import { Board } from "./Board.js";
-import { initListeners, clearBoard, fillBoard } from "./listenHere.js";
+import { initListeners } from "./listenHere.js";
 
 const BOARD_DIMENSIONS = 10;
 
@@ -59,10 +59,4 @@ const bBoard = Board(BOARD_DIMENSIONS, bShips);
 // Add Board to Bot
 playerBot.assignBoard(bBoard);
 
-const fullBoardPlayer = player1.getBoard().seeBoard();
-// console.log(fullBoardPlayer);
-
-const fullBoardBot = playerBot.getBoard().seeBoard();
-// console.log(fullBoardBot);
-
-fillBoard(player1.getBoard(), playerBot.getBoard());
+initListeners(player1, playerBot);

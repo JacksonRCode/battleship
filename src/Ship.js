@@ -12,7 +12,7 @@ const Ship = (length, type = "BATTLESHIP") => {
     */
     _health -= 1;
     checkSunk();
-    if (_sunk) return "SUNK!";
+    if (_sunk) return "SUNK " + type;
     return "HIT!";
   };
 

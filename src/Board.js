@@ -50,13 +50,13 @@ const Board = (dimensions, ships = []) => {
       // Case 2 --> ship
       _board[x][y][1] = 1;
       returnValue = target[0].hit();
-      if (target[0].getSunk()) returnValue = checkWin();
+      if (target[0].getSunk()) returnValue = checkWin(returnValue);
     }
 
     return returnValue;
   };
 
-  const checkWin = () => {
+  const checkWin = (ret) => {
     // Checks each ship object to see if it is sunk
     let win = true;
     ships.forEach((ship) => {
@@ -65,7 +65,7 @@ const Board = (dimensions, ships = []) => {
       }
     });
 
-    return win ? "Game Over!" : "Sunk!";
+    return win ? "Game Over!" : ret;
   };
 
   initBoard();
