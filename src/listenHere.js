@@ -9,7 +9,7 @@ const CURRTURN = document.querySelector(".display-turn");
 const initListeners = (player1, player2) => {
   document.querySelector(".start-button").addEventListener("click", () => {
     clearBoard();
-    fillBoard(player1.getBoard(), player2.getBoard());
+    fillBoard(player1, player2);
   });
 };
 
@@ -24,12 +24,15 @@ const clearBoard = () => {
   }
 };
 
-const fillBoard = (board1, board2) => {
+const fillBoard = (player1, player2) => {
   /*
     This function fills both boards with values from board1 and board 2
 
     Each tile is given click event listeners that signal hits
   */
+  const board1 = player1.getBoard();
+  const board2 = player2.getBoard();
+
   const boardData1 = board1.seeBoard();
   const boardData2 = board2.seeBoard();
   const DIM = boardData1.length;
@@ -48,11 +51,11 @@ const fillBoard = (board1, board2) => {
       if (Array.isArray(target2)) two.classList = "ship tile";
 
       one.addEventListener("click", () => {
-        domReceiveAttack(one, board1, [i, j]);
+        domReceiveAttack(one, board1, [i, j], player1);
       });
 
       two.addEventListener("click", () => {
-        domReceiveAttack(two, board2, [i, j]);
+        domReceiveAttack(two, board2, [i, j], player2);
       });
 
       P1BOARD.appendChild(one);
@@ -61,7 +64,7 @@ const fillBoard = (board1, board2) => {
   }
 };
 
-const domReceiveAttack = (tile, board, coords) => {
+const domReceiveAttack = (tile, board, coords, player) => {
   /* 
     This function registers attacks on the dom, and connects hits to the backend
   */
@@ -72,12 +75,29 @@ const domReceiveAttack = (tile, board, coords) => {
     tile.classList.add("hit");
     const shotResult = board.receiveAttack(coords);
     if (shotResult === "Game Over!") {
-      P1BOARD.classList.add("no-click");
-      P2BOARD.classList.add("no-click");
+      endGame();
     }
     STATUS.textContent = shotResult;
   } else {
     // If the tile
-    console.log("Already hit here");
+    STATUS.textContent = "You've already shot there you fool";
   }
+
+  switchTurn();
+  CURRTURN.textContent = player.getName() + "'s turn";
+};
+
+const switchTurn = () => {
+  if (P1BOARD.classList.contains("no-click")) {
+    P1BOARD.classList.remove("no-click");
+    P2BOARD.classList.add("no-click");
+  } else {
+    P2BOARD.classList.remove("no-click");
+    P1BOARD.classList.add("no-click");
+  }
+};
+
+const endGame = () => {
+  P1BOARD.classList.add("no-click");
+  P2BOARD.classList.add("no-click");
 };
