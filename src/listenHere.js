@@ -11,6 +11,23 @@ const initListeners = (player1, player2) => {
     clearBoard();
     fillBoard(player1, player2);
   });
+
+  const playerTwoInput = document.querySelector(".p2-input-container");
+  document.querySelector("#check-two-player").addEventListener("click", () => {
+    // Checks to see if one or two players are playing
+    if (playerTwoInput.classList.contains("invisible")) {
+      playerTwoInput.classList.remove("invisible");
+      document.querySelector("#p2-input").value = "";
+    } else {
+      playerTwoInput.classList.add("invisible");
+    }
+  });
+
+  document
+    .querySelector(".go-to-ship-selection")
+    .addEventListener("click", () => {
+      document.querySelector(".create-players").classList.add("invisible");
+    });
 };
 
 const clearBoard = () => {

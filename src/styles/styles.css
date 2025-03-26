@@ -34,6 +34,39 @@ body {
   padding: 32px;
 }
 
+.create-players {
+  height: 400px;
+  min-width: 400px;
+  width: 40vw;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 32px;
+}
+
+.name-input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-players-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkbox-options > div {
+  /* width: 200px; */
+  display: flex;
+
+  gap: 8px;
+  justify-content: space-between;
+}
+
+button.go-to-ship-selection {
+  width: 150px;
+}
+
 .board-container {
   display: flex;
   justify-content: center;
@@ -116,4 +149,8 @@ body {
 
 .no-click {
   pointer-events: none;
+}
+
+.invisible {
+  display: none;
 }

@@ -10,11 +10,40 @@
       <h1 class="main-title">BATTLESHIP</h1>
     </div>
     <div class="content">
-      <div class="board-container">
+      <div class="create-players">
+        <div class="name-input-container">
+          <div class="p1-input-container">
+            <label for="p1-input">Player 1 Name: </label>
+            <input type="text" class="name-input" id="p1-input" />
+          </div>
+          <div class="p2-input-container invisible">
+            <label for="p2-input">Player 2 Name: </label>
+            <input type="text" class="name-input" id="p2-input" />
+          </div>
+        </div>
+        <div class="create-players-options">
+          <div class="checkbox-options">
+            <div>
+              <label for="check-two-player" class="two-player-label"
+                >Play someone locally:</label
+              >
+              <input type="checkbox" id="check-two-player" />
+            </div>
+            <div>
+              <label for="check-p2-start" class="p2-start-label"
+                >Player 2 Starts:</label
+              >
+              <input type="checkbox" id="check-p2-start" />
+            </div>
+          </div>
+          <button class="go-to-ship-selection">Next</button>
+        </div>
+      </div>
+      <div class="board-container invisible">
         <div class="board player1"></div>
         <div class="board player2"></div>
       </div>
-      <div class="game-control">
+      <div class="game-control invisible">
         <p class="display-turn">It is someone's turn... not sure whose</p>
         <p class="turnReplayMsg"></p>
         <button class="start-button">Begin Game</button>
