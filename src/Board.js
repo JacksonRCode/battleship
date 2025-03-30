@@ -8,6 +8,7 @@ const Board = (dimensions, ships = []) => {
     Playeranme -- name of player 
   */
   let _board = [];
+  let _ships = ships;
   /*
     Board labeling:
       - 0 = fresh water
@@ -68,12 +69,32 @@ const Board = (dimensions, ships = []) => {
     return win ? "Game Over!" : ret;
   };
 
-  initBoard();
+  const checkPlacement = (coords) => {
+    // Check to make sure a ship isn't colliding with another ship
+    let placementWorks = true;
+    coords.forEach((coord) => {
+      if (Array.isArray(_board[(coord[0], coord[1])])) {
+        placementWorks = false;
+      } else if (coord[0] < 0 || coord[1] < 0 || coord[0] > 9 || coord[1] > 9) {
+        placementWorks = false;
+      }
+    });
+
+    return placementWorks;
+  };
+
+  const addShip = (ship) => {
+    _ships.push(ship);
+  };
 
   return {
     initBoard,
     receiveAttack,
     seeBoard: () => _board,
+    initBoard,
+    addShip,
+    checkPlacement,
+    getDimensions: () => dimensions,
   };
 };
 

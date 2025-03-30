@@ -1,0 +1,5 @@
+Ship Placement Selection:
+ 1. Create a board
+ 2. Display empty board
+ 3. Show ships to left of board
+ 4. Let players select ship and place them

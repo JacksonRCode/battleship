@@ -1,34 +1,30 @@
-// Litener file
-export { initListeners };
+/* 
+  This file has functions that control the flow of the game
+  This flow includes:
+    - game initiation
+    - game flow control
+    - ship placement selection
+    - gameboard rendering and clearing
+    - game ending
+    - etc
+  Ships are created here
+*/
+
+import { Ship } from "./Ship.js";
+
+export {
+  clearBoard,
+  fillBoard,
+  initShipSelection,
+  domReceiveAttack,
+  switchTurn,
+  endGame,
+};
 
 const P1BOARD = document.querySelector(".player1");
 const P2BOARD = document.querySelector(".player2");
 const STATUS = document.querySelector(".turnReplayMsg");
 const CURRTURN = document.querySelector(".display-turn");
-
-const initListeners = (player1, player2) => {
-  document.querySelector(".start-button").addEventListener("click", () => {
-    clearBoard();
-    fillBoard(player1, player2);
-  });
-
-  const playerTwoInput = document.querySelector(".p2-input-container");
-  document.querySelector("#check-two-player").addEventListener("click", () => {
-    // Checks to see if one or two players are playing
-    if (playerTwoInput.classList.contains("invisible")) {
-      playerTwoInput.classList.remove("invisible");
-      document.querySelector("#p2-input").value = "";
-    } else {
-      playerTwoInput.classList.add("invisible");
-    }
-  });
-
-  document
-    .querySelector(".go-to-ship-selection")
-    .addEventListener("click", () => {
-      document.querySelector(".create-players").classList.add("invisible");
-    });
-};
 
 const clearBoard = () => {
   P1BOARD.classList.remove("no-click");
@@ -79,6 +75,57 @@ const fillBoard = (player1, player2) => {
       P2BOARD.appendChild(two);
     }
   }
+};
+
+const initShipSelection = (board) => {
+  // Create the board that players will use to select their ship location
+  const DIM = board.getDimensions();
+  let current = "option-1";
+
+  const shipOptions = [...document.querySelector(".ship-options").children];
+
+  shipOptions.forEach((obj) => {
+    obj.addEventListener("click", () => {
+      current = obj.classList[1];
+    });
+  });
+
+  for (let i = 0; i < DIM; i++) {
+    for (let j = 0; j < DIM; j++) {
+      const tile = document.createElement("div");
+      tile.classList = "tile";
+
+      tile.addEventListener("click", () => {
+        placeShip([i, j], current, board);
+      });
+
+      document.querySelector(".selection-board").appendChild(tile);
+    }
+  }
+};
+
+const placeShip = (coords, selection, board) => {
+  const shipTypes = {
+    // [length, type]
+    "option-1": [3, "Battleship"],
+    "option-2": [4, "Aircraft Carrier"],
+    "option-3": [3, "Submarine"],
+    "option-4": [2, "Cruiser"],
+    "option-5": [1, "Soldier"],
+  };
+
+  const shipType = shipTypes[selection];
+
+  const fullCoords = [coords];
+  let tab = 1;
+
+  for (let i = 1; i < shipType[0]; i++) {
+    fullCoords.push([coords[0] + tab, coords[1]]);
+    if (tab === -1) tab = 2;
+    else tab *= -1;
+  }
+  console.log(fullCoords);
+  console.log(board.checkPlacement(fullCoords));
 };
 
 const domReceiveAttack = (tile, board, coords, player) => {

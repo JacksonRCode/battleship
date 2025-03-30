@@ -3,7 +3,7 @@ import "./styles/styles.css";
 import { Player } from "./Player.js";
 import { Ship } from "./Ship.js";
 import { Board } from "./Board.js";
-import { initListeners } from "./listenHere.js";
+import { initListeners } from "./eventListeners.js";
 
 const BOARD_DIMENSIONS = 10;
 
