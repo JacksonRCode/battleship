@@ -19,6 +19,7 @@ export {
   domReceiveAttack,
   switchTurn,
   endGame,
+  resetShipPlacementOption,
 };
 
 const P1BOARD = document.querySelector(".player1");
@@ -124,7 +125,7 @@ const fillBoard = (player = false, dest, selection = false, selectionBoard) => {
             if (placeShip([i, j], current, board)) {
               board.renderShips();
               fillBoard(player, dest, selection, selectionBoard);
-              removePlacementOption();
+              removeShipPlacementOption();
             } else {
               alert("Cannot place ship there");
             }
@@ -139,6 +140,18 @@ const fillBoard = (player = false, dest, selection = false, selectionBoard) => {
   }
 };
 
+const resetShipPlacementOption = () => {
+  const parent = document.querySelector(".ship-options");
+  const children = [...parent.children];
+  children.forEach((child) => {
+    if (child.classList.contains("invisible")) {
+      child.classList.remove("invisible");
+    } else {
+      child.classList.add("invisible");
+    }
+  });
+};
+
 const initShipSelection = (board) => {
   // Create the board that players will use to select their ship location
   let current = null;
@@ -146,25 +159,27 @@ const initShipSelection = (board) => {
   const shipOptions = [...document.querySelector(".ship-options").children];
 
   shipOptions.forEach((obj) => {
-    // console.log(obj);
-    obj.addEventListener("click", () => {
-      if (current !== obj.classList[1]) {
-        shipOptions.forEach((obj2) => {
-          if ([...obj2.children].length === 3) {
-            obj2.removeChild(obj2.lastChild);
-            obj2.classList.remove("selected-ship");
-          }
-        });
-        current = obj.classList[1];
-        obj.classList.add("selected-ship");
-        const pElement = document.createElement("p");
-        pElement.textContent = "Selected";
-        pElement.id = "selected";
-        obj.appendChild(pElement);
-      }
-    });
+    if (!obj.classList.contains("invisible")) {
+      obj.addEventListener("click", () => {
+        if (current !== obj.classList[1]) {
+          shipOptions.forEach((obj2) => {
+            if ([...obj2.children].length === 3) {
+              obj2.removeChild(obj2.lastChild);
+              obj2.classList.remove("selected-ship");
+            }
+          });
+          current = obj.classList[1];
+          obj.classList.add("selected-ship");
+          const pElement = document.createElement("p");
+          pElement.textContent = "Selected";
+          pElement.id = "selected";
+          obj.appendChild(pElement);
+        }
+      });
+    }
   });
   const boardDest = document.querySelector(".selection-board");
+  clearBoard(boardDest);
   fillBoard(false, boardDest, true, board);
 };
 
@@ -199,10 +214,22 @@ const placeShip = (coords, selection, board) => {
   return false;
 };
 
-const removePlacementOption = () => {
+const removeShipPlacementOption = () => {
   const parent = document.querySelector(".ship-options");
   const child = parent.querySelector(".selected-ship");
-  parent.removeChild(child);
+  child.classList.add("invisible");
+
+  // Check if last ship has been placed
+  const children = [...parent.children];
+  let done = true;
+  children.forEach((child) => {
+    if (!child.classList.contains("invisible")) {
+      done = false;
+    }
+  });
+  if (done) {
+    parent.children[5].classList.remove("invisible");
+  }
 };
 
 const domReceiveAttack = (tile, board, coords, player) => {

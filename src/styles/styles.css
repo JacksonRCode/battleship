@@ -69,8 +69,14 @@ body {
   justify-content: space-between;
 }
 
-button.go-to-ship-selection {
+button.next-button {
   width: 150px;
+}
+
+.p2-board-selection {
+  height: 100%;
+  width: 100%;
+  background-color: white;
 }
 
 .board-container {
@@ -106,6 +112,11 @@ button.go-to-ship-selection {
 
 .ship {
   background-color: blue;
+}
+
+.ship:hover {
+  background-color: blue;
+  opacity: 0.7;
 }
 
 .ship.hit {
