@@ -24,7 +24,9 @@ const Board = (dimensions, ships = []) => {
         _board[i].push(0);
       }
     }
+  };
 
+  const renderShips = () => {
     ships.forEach((ship) => {
       // Initialize ships --> board[x][y] = [shipObj, hitStatus]
       ship[1].forEach((position) => {
@@ -73,9 +75,9 @@ const Board = (dimensions, ships = []) => {
     // Check to make sure a ship isn't colliding with another ship
     let placementWorks = true;
     coords.forEach((coord) => {
-      if (Array.isArray(_board[(coord[0], coord[1])])) {
+      if (coord[0] < 0 || coord[1] < 0 || coord[0] > 9 || coord[1] > 9) {
         placementWorks = false;
-      } else if (coord[0] < 0 || coord[1] < 0 || coord[0] > 9 || coord[1] > 9) {
+      } else if (Array.isArray(_board[coord[0]][coord[1]])) {
         placementWorks = false;
       }
     });
@@ -87,44 +89,16 @@ const Board = (dimensions, ships = []) => {
     _ships.push(ship);
   };
 
+  initBoard();
+  renderShips();
+
   return {
     initBoard,
+    renderShips,
     receiveAttack,
     seeBoard: () => _board,
-    initBoard,
     addShip,
     checkPlacement,
     getDimensions: () => dimensions,
   };
 };
-
-// let isHit = "miss";
-
-//     _location.forEach((tile) => {
-//       if (checkAlreadyHit(tile)) isHit = "repetition";
-//       if (
-//         coord[0] === tile[0] &&
-//         coord[1] === tile[1] &&
-//         isHit !== "repetition"
-//       ) {
-//         _health -= 1;
-//         _hits.push(tile);
-//         isHit = "hit";
-//       }
-//     });
-
-//     return isHit;
-//   };
-
-//   const checkAlreadyHit = (tile) => {
-//     let deadTile = false;
-//     _hits.forEach((hit) => {
-//       if (hit[0] === tile[0] && hit[1] === tile[1]) {
-//         deadTile = true;
-//       }
-//     });
-
-//     if (deadTile) {
-//       return true;
-//     } else return false;
-//   };

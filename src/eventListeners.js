@@ -10,10 +10,15 @@ import {
 } from "./control.js";
 import { Board } from "./Board.js";
 
+const P1BOARD = document.querySelector(".player1");
+const P2BOARD = document.querySelector(".player2");
+
 const initListeners = (player1, player2) => {
   document.querySelector(".start-button").addEventListener("click", () => {
-    clearBoard();
-    fillBoard(player1, player2);
+    // clearBoard(P1BOARD);
+    // clearBoard(P2BOARD);
+    fillBoard(player1, P1BOARD);
+    fillBoard(player2, P2BOARD);
   });
 
   const playerTwoInput = document.querySelector(".p2-input-container");
