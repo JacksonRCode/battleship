@@ -41,7 +41,7 @@ const pShips = [
 const pBoard = Board(BOARD_DIMENSIONS, pShips);
 
 // Add Board to Player
-player1.assignBoard(pBoard);
+// player1.assignBoard(pBoard);
 
 // Create Bot Ships
 const bShip1 = Ship(3, "Battleship");
@@ -57,6 +57,6 @@ const bShips = [
 const bBoard = Board(BOARD_DIMENSIONS, bShips);
 
 // Add Board to Bot
-playerBot.assignBoard(bBoard);
+// playerBot.assignBoard(bBoard);
 
 initListeners(player1, playerBot);
