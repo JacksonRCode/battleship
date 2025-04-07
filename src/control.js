@@ -128,6 +128,8 @@ const initShipSelection = (board) => {
       obj.addEventListener("click", () => {
         if (current !== obj.classList[1]) {
           shipOptions.forEach((obj2) => {
+            // Remove selected status from currently selected ship
+            // This makes sure the user can change their mind when selecting a ship
             if ([...obj2.children].length === 3) {
               obj2.removeChild(obj2.lastChild);
               obj2.classList.remove("selected-ship");
@@ -174,6 +176,7 @@ const placeShip = (coords, selection, board) => {
   if (board.checkPlacement(fullCoords)) {
     const ship = Ship(shipType[0], shipType[1]);
     board.addShip([ship, fullCoords]);
+
     return true;
   }
   return false;
@@ -183,6 +186,9 @@ const removeShipPlacementOption = () => {
   const parent = document.querySelector(".ship-options");
   const child = parent.querySelector(".selected-ship");
   child.classList.add("invisible");
+  // Remove <p>Selected</p> and "selected-ship" class
+  child.removeChild(child.lastChild);
+  child.classList.remove("selected-ship");
 
   // Check if last ship has been placed
   const children = [...parent.children];
