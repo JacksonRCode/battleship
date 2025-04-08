@@ -1,8 +1,9 @@
 TODO:
-111. Fix select issue when p2 selects a ship:
-   - whatever the previous player had last selected is auto-selected when p2 
-     begins selection process.
 1. Dynamically create players instead of creating them in index.
+1.1. Reveal enemy ships after gameover
+1.2. Put player names above respective boards
+    1.3. Highlight current player name 
+    1.4. Scrap game-control with background and change to just text displaying previous action
 2. Restart button
 3. Play computer option
 4. Ship images
