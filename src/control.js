@@ -231,12 +231,18 @@ const domReceiveAttack = (tile, board, coords, player) => {
 };
 
 const switchTurn = (player, message) => {
+  const p1DispName = document.getElementById("player1-display-name");
+  const p2DispName = document.getElementById("player2-display-name");
   if (P1BOARD.classList.contains("no-click")) {
     P1BOARD.classList.remove("no-click");
     P2BOARD.classList.add("no-click");
+    p1DispName.classList.remove("active-shooter");
+    p2DispName.classList.add("active-shooter");
   } else {
     P2BOARD.classList.remove("no-click");
     P1BOARD.classList.add("no-click");
+    p2DispName.classList.remove("active-shooter");
+    p1DispName.classList.add("active-shooter");
   }
   CURRPLAYER = player.getName();
   CURRTURN.textContent = CURRPLAYER + "'s turn";
@@ -249,9 +255,15 @@ const startGame = (player1, player2) => {
   if (p2Start) {
     P2BOARD.classList.add("no-click");
     STATUS.textContent = player2.getName() + "'s turn";
+    document
+      .getElementById("player2-display-name")
+      .classList.add("active-shooter");
   } else {
     P1BOARD.classList.add("no-click");
     STATUS.textContent = player1.getName() + "'s turn";
+    document
+      .getElementById("player1-display-name")
+      .classList.add("active-shooter");
   }
 };
 

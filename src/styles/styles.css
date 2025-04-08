@@ -86,6 +86,12 @@ button.next-button {
   gap: 32px;
 }
 
+.board-container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .board {
   width: 400px;
   height: 400px;
@@ -93,6 +99,14 @@ button.next-button {
   display: flex;
   flex-wrap: wrap;
   outline: 2px solid black;
+}
+
+.player-display-name {
+  color: darkgray;
+}
+
+.active-shooter {
+  color: red;
 }
 
 .tile {

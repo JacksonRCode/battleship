@@ -45,6 +45,10 @@ const initListeners = () => {
         p2Name = document.getElementById("p2-input").value;
       }
 
+      // Display Player Names on the board
+      document.getElementById("player1-display-name").textContent = p1Name;
+      document.getElementById("player2-display-name").textContent = p2Name;
+
       // Create players
       const p1 = Player(p1Name, true);
       const p2 = Player(p2Name, twoPlayer);
